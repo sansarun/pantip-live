@@ -4,13 +4,11 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         
-        jasmine: {
-            build: {
-                src: 'src/**/*.js',
-                options: {
-                    specs: 'test/*Spec.js',
-                }
-            }
+        karma: {
+          unit: {
+            configFile: 'karma.conf.js',
+            singleRun: true
+          }
         },
 
         uglify: {
@@ -22,10 +20,10 @@ module.exports = function(grunt) {
     });
 
     //load plugins
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     //define tasks
-    grunt.registerTask('default', ['jasmine', 'uglify']);
+    grunt.registerTask('default', ['karma:unit', 'uglify']);
 
 };
