@@ -15,15 +15,18 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/*.js',
-      'test/*.js'
+      'test/*.js',
+      {pattern: 'test/html/*.html', watched: true, served: true, included: false},
     ],
 
+    preprocessors: {
+        'test/html/*.html' : ''
+    },
 
     // list of files to exclude
     exclude: [
       
     ],
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
