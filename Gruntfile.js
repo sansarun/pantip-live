@@ -1,8 +1,18 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
+    // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        
+        jasmine: {
+            build: {
+                src: 'src/**/*.js',
+                options: {
+                    specs: 'test/*Spec.js',
+                }
+            }
+        },
+
         uglify: {
             build: {
                 src: 'src/bookmarklet.js',
@@ -11,10 +21,11 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load the plugin that provides the "uglify" task.
+    //load plugins
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    // Default task(s).
-    grunt.registerTask('default', ['uglify']);
+    //define tasks
+    grunt.registerTask('default', ['jasmine', 'uglify']);
 
 };
